@@ -61,12 +61,7 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-    if (str(prediction) == 'pizza'):
-        return JSONResponse({"Result: That's a yummy pizza!"})
-    elif (str(prediction) == 'hawaiian'):
-        return JSONResponse({"Result: Hawaiian pizza is not a pizza, it's an abomination!")})
-    else:
-        return JSONResponse({"Result: That's not a pizza."})
+    return JSONResponse({'result': str(prediction)})
 
 
 if __name__ == '__main__':
